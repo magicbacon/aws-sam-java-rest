@@ -11,8 +11,8 @@ Globals:
         Timeout: 20
         Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
           Variables:
-            TABLE_NAME:
-            ENDPOINT_OVERRIDE:
+            TABLE_NAME: order_table
+            #ENDPOINT_OVERRIDE: http://127.0.0.1:8000
 
 Resources:
   GetOrderFunction:
