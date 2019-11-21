@@ -5,6 +5,12 @@ pipeline {
     }
 
   }
+  
+  environment {
+    AWS_ACCESS_KEY_ID = 'AKIAY46JZWIAZMWY5O42'
+    AWS_SECRET_ACCESS_KEY = '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'
+  }
+  
   stages {
     stage('Build') {
       steps {
