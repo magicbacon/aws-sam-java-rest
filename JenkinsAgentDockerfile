@@ -3,10 +3,9 @@ RUN apk update && \
     apk upgrade && \
     apk add bash && \
     apk add --update \
-    python \
-    python-dev \
-    py-pip \
+    python3 \
+    python3-dev \
     build-base && \
     apk add --no-cache nss && \
     apk add --no-cache --virtual build-deps build-base gcc && \
-    pip install awscli aws-sam-cli
+    pip3 install awscli aws-sam-cli
