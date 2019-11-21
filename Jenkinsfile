@@ -25,12 +25,6 @@ pipeline {
     }
 
     stage('Package') {
-      agent {
-        docker {
-          image 'magicbacon/sam-in-docker'
-        }
-
-      }
       steps {
         sh 'sam --version'
       }
