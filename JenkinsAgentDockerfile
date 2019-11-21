@@ -7,5 +7,6 @@ RUN apk update && \
     python-dev \
     py-pip \
     build-base && \
+    apk add --no-cache nss && \
     apk add --no-cache --virtual build-deps build-base gcc && \
     pip install aws-sam-cli
