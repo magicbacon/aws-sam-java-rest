@@ -27,7 +27,9 @@ pipeline {
 
     stage('Package') {
       steps {
-        sh 'sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket aws-sam-java-rest-test'
+        withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/home/linuxbrew/.linuxbrew/bin']) {          
+          sh 'sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket aws-sam-java-rest-test'
+        }
       }
     }
 
