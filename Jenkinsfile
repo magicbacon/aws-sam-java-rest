@@ -26,10 +26,17 @@ pipeline {
     }
 
     stage('Package') {
-      steps {
-        withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/home/linuxbrew/.linuxbrew/bin']) {          
-          sh 'sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket aws-sam-java-rest-test'
+      agent {
+        docker {
+          image 'magicbacon/sam-in-docker'
         }
+
+      }
+      steps {
+        withEnv(overrides: ['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/home/linuxbrew/.linuxbrew/bin']) {
+          sh 'sam --version'
+        }
+
       }
     }
 
