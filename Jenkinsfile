@@ -32,10 +32,7 @@ pipeline {
 
       }
       steps {
-        withEnv(overrides: ['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin:/home/linuxbrew/.linuxbrew/bin']) {
-          sh 'sam --version'
-        }
-
+        sh 'sam --version'
       }
     }
 
