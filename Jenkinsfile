@@ -6,11 +6,6 @@ pipeline {
 
   }
   
-  environment {
-    AWS_ACCESS_KEY_ID = 'AKIAY46JZWIAZMWY5O42'
-    AWS_SECRET_ACCESS_KEY = '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'
-  }
-  
   stages {
     stage('Build') {
       steps {
@@ -32,13 +27,17 @@ pipeline {
 
     stage('Package') {
       steps {
-        sh 'sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket aws-sam-java-rest-test'
+        withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+          sh 'sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket aws-sam-java-rest-test'
+        }
       }
     }
 
     stage('Deploy') {
       steps {
-        sh 'sam deploy --template-file packaged.yaml --stack-name aws-sam-java-rest-stack --region us-east-1 --capabilities CAPABILITY_IAM'
+        withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+          sh 'sam deploy --template-file packaged.yaml --stack-name aws-sam-java-rest-stack --region us-east-1 --capabilities CAPABILITY_IAM'
+        }
       }
     }
 
