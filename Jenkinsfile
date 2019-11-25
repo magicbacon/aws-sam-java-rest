@@ -24,6 +24,14 @@ pipeline {
         sh 'mvn test'
       }
     }
+    
+    stage('Sonar Scan') {
+      steps {
+        withSonarQubeEnv() {
+          sh 'mvn sonar:sonar'
+        }
+      }
+    }
 
     stage('Package') {
       steps {
