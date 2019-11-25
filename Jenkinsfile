@@ -37,7 +37,7 @@ pipeline {
       steps {
         withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
           sh 'aws cloudformation describe-stack-events --stack-name aws-sam-java-rest-stack'
-          sh 'sam deploy --template-file packaged.yaml --stack-name aws-sam-java-rest-stack --region us-east-1 --capabilities CAPABILITY_IAM'
+          sh 'sam deploy --template-file packaged.yaml --stack-name aws-sam-java-rest-stack --region us-east-1 --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset'
         }
       }
     }
